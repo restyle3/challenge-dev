@@ -1,5 +1,7 @@
-import React from 'react'
-import { Link, useHistory } from "react-router-dom";
+import React, { useState, useContext } from 'react';
+import { GlobalContext } from "../context/GlobalState";
+import { v4 as uuid } from "uuid";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Form,
   FormGroup,
@@ -14,11 +16,30 @@ import {
 
 
 export const AddTask = () => {
+
+  const [name, setName] = useState('');
+  const { addTask } = useContext(GlobalContext);
+  const navigate = useNavigate();
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const newTask = {
+      id: uuid(),
+      name
+    }
+    addTask(newTask);
+    navigate("/");
+  }
+
+  const onChange = (e) => {
+    setName(e.target.value);
+  }
+
   return (
-    <Form>
+    <Form onSubmit={onSubmit}>
       <FormGroup>
         <Label>Título</Label>
-        <Input type="text" placeholder="Coloca aqui o nome da tarefa!"></Input>
+        <Input type="text" value={name} onChange={onChange} placeholder="Coloca aqui o nome da tarefa!"></Input>
       </FormGroup>
       <FormGroup>
         <div className='col-md-6'>
