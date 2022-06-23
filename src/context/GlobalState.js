@@ -42,7 +42,6 @@ const initialState = {
   const incrementCount = () =>{
     const newCount = parseInt(count) + 1
     setCount(newCount)
-    console.log(newCount)
   }
 
   return (

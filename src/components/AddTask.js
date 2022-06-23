@@ -55,7 +55,8 @@ export const AddTask = () => {
   return (
     <Form onSubmit={onSubmit}>
       <FormGroup>
-        <Label>Título</Label>
+      <h1>Adicionar nova tarefa</h1>
+        <Label>Tarefa</Label>
         <Input type="text" value={name} onChange={onChangeName} placeholder="Coloca aqui o nome da tarefa!" required></Input>
       </FormGroup>
       <FormGroup>
