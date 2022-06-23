@@ -1,45 +1,55 @@
-import React, { useState, useContext } from 'react';
-import { GlobalContext } from "../context/GlobalState";
+import React, { useState, useContext, useRef } from 'react';
+import { useGlobalContext } from "../context/GlobalState";
 import { v4 as uuid } from "uuid";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Form,
   FormGroup,
   Label,
-  Input,
-  Button,
-  Dropdown, 
-  DropdownToggle, 
-  DropdownMenu, 
-  DropdownItem
+  Input
 } from 'reactstrap';
-
 
 export const AddTask = () => {
 
-  const [name, setName] = useState('');
-  const { addTask } = useContext(GlobalContext);
+
+  const [name, setName, ] = useState('');
+  const [desc, setDesc] = useState('');
+  const { addTask, count, incrementCount } = useGlobalContext();
   const navigate = useNavigate();
+  
 
   const onSubmit = (e) => {
     e.preventDefault();
     const newTask = {
       id: uuid(),
-      name
+      name,
+      desc,
+      count
     }
     addTask(newTask);
     navigate("/");
   }
 
-  const onChange = (e) => {
+
+ /* const taskNumber = () => {
+    const newCount = parseInt(count) + 1
+    setCount(newCount)
+    console.log(newCount);
+  }*/
+
+  const onChangeName = (e) => {
     setName(e.target.value);
+  }
+
+  const onChangeDesc = (e) => {
+    setDesc(e.target.value);
   }
 
   return (
     <Form onSubmit={onSubmit}>
       <FormGroup>
         <Label>Título</Label>
-        <Input type="text" value={name} onChange={onChange} placeholder="Coloca aqui o nome da tarefa!"></Input>
+        <Input type="text" value={name} onChange={onChangeName} placeholder="Coloca aqui o nome da tarefa!" required></Input>
       </FormGroup>
       <FormGroup>
         <div className='col-md-6'>
@@ -54,13 +64,13 @@ export const AddTask = () => {
       </FormGroup>
       <FormGroup>
         <Label>Descrição</Label>
-        <textarea type="text" className='form-control' placeholder="Descreve a tarefa"></textarea>
+        <textarea type="text" value={desc} onChange={onChangeDesc} className='form-control' placeholder="Descreve a tarefa" required></textarea>
       </FormGroup>
-
-      <button className='btn btn-sm btn-outline-primary me-2'><i class="fa-solid fa-circle-plus"></i> Criar</button>
+      <button onClick={() => {incrementCount()}} className='btn btn-sm btn-outline-primary me-2'><i class="fa-solid fa-circle-plus"></i> Criar</button>
 
       <Link to="/" className="btn btn-sm btn-outline-danger me-2"><i class="fa-solid fa-rotate-left"></i> Cancelar</Link>
     </Form>
+    
   )
 }
 

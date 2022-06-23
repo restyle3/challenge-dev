@@ -16,7 +16,7 @@ export const Heading = () => {
       </div>
     <div class="card-body">
       <h5 class="card-title">Começa por criar aqui a tua próxima tarefa!</h5>
-      <Link href="#" class="btn btn-outline-secondary" to="/add">+ Atividade</Link>
+      <Link class="btn btn-outline-secondary" to="/add">+ Atividade</Link>
     </div>
     </div>
     

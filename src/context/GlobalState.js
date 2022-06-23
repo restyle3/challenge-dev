@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useState, useContext } from 'react';
 import AppReducer from './AppReducer';
 
 // Initial State
@@ -7,11 +7,15 @@ const initialState = {
 }
 
 // Create Context
-export const GlobalContext = createContext(initialState);
+ const GlobalContext = createContext(initialState);
+
+
 
 // Provider Component
-export const GlobalProvider = ({ children }) => {
+ const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
+
+  const [count, setCount] = useState(0);
 
   // Actions
   const removeTask = (id) => {
@@ -35,14 +39,25 @@ export const GlobalProvider = ({ children }) => {
     })
   }
 
+  const incrementCount = () =>{
+    const newCount = parseInt(count) + 1
+    setCount(newCount)
+    console.log(newCount)
+  }
+
   return (
     <GlobalContext.Provider value={{
       tasks: state.tasks,
       removeTask,
       addTask,
-      editTask
+      editTask,
+      count,
+      incrementCount
+    
     }}>
       {children}
     </GlobalContext.Provider>
   )
 }
+const useGlobalContext = () => useContext(GlobalContext);
+export { GlobalProvider, useGlobalContext };
