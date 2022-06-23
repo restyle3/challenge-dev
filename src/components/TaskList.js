@@ -2,7 +2,35 @@ import React, { useContext } from 'react';
 import { useGlobalContext } from "../context/GlobalState";
 
 export const TaskList = () => {
-  const { addTask, count, incrementCount, tasks, removeTask } = useGlobalContext();
+  const { addTask, count, incrementCount, tasks, removeTask, prio } = useGlobalContext();
+
+  function prioridadeLabel(aux){
+    switch(aux){
+      case '1':
+        return 'Baixa';
+      case '2':
+        return 'Normal';
+      case '3':
+        return 'Alta';
+      default:
+        return 'Não definido';
+    }
+  }
+
+  function prioridadeIcon(aux){
+    switch(aux){
+      case '1':
+        return 'smile';
+      case '2':
+        return 'meh';
+      case '3':
+        return 'frown';
+      default:
+        return 'Não definida';
+    }
+  }
+
+  const aux = prio;
 
   return (
       <div className='mt-3'>
@@ -16,7 +44,7 @@ export const TaskList = () => {
                 <span className='badge bg-secondary me-1'>{task.count}</span>
                 - {task.name}
               </h5>
-              <h6>Prioridade: Normal</h6>
+              <h6>Prioridade: {prioridadeLabel(task.prio)} <i className={'me-1 far fa-'+ prioridadeIcon(task.prio)}></i></h6>
             </div>
                 <p className='card-text'>{task.desc}</p>
                 <div className='d-flex justify-content-end pt-2 m-0 border-top'>

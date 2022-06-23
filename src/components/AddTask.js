@@ -11,7 +11,7 @@ import {
 
 export const AddTask = () => {
 
-
+  const [prio, setPrio, ] = useState(''); 
   const [name, setName, ] = useState('');
   const [desc, setDesc] = useState('');
   const { addTask, count, incrementCount } = useGlobalContext();
@@ -24,7 +24,8 @@ export const AddTask = () => {
       id: uuid(),
       name,
       desc,
-      count
+      count,
+      prio
     }
     addTask(newTask);
     navigate("/");
@@ -45,6 +46,12 @@ export const AddTask = () => {
     setDesc(e.target.value);
   }
 
+  const onChangePrio = (e) => {
+    setPrio(e.target.value);
+    console.log(prio);
+  }
+
+
   return (
     <Form onSubmit={onSubmit}>
       <FormGroup>
@@ -54,7 +61,7 @@ export const AddTask = () => {
       <FormGroup>
         <div className='col-md-6'>
           <label className='form-label'>Prioridade</label>
-          <select className='form-select'>
+          <select value={prio} onChange={onChangePrio} className='form-select'>
             <option defaultValue="0">Seleciona ...</option>
             <option value="1">Baixa</option>
             <option value="2">Normal</option>
