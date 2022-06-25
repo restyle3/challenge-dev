@@ -5,25 +5,12 @@ export const Heading = () => {
   return (
     <div class="card text-center">
       <div class="card-header">
-        As minhas Tarefas
+        Lista de Tarefas
       </div>
     <div class="card-body">
-      <h5 class="card-title">Começa por criar aqui a tua próxima tarefa!</h5>
-      <Link class="btn btn-outline-secondary" to="/add">+ Atividade</Link>
+      <h5 class="card-title">Nesta aplicação irás poder adicionar tarefas!</h5>
     </div>
     </div>
-    
-    
-    /*<Navbar color="dark" dark>
-        
-        <Nav>
-          <Container>
-          <NavbarBrand href="/">As minhas tarefas</NavbarBrand>
-            <NavItem>
-              <Link className="btn btn-primary" to="/add">Adicionar Tarefa</Link>
-            </NavItem>
-          </Container>
-        </Nav>
-    </Navbar>*/
+
   )
 }

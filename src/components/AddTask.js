@@ -25,18 +25,12 @@ export const AddTask = () => {
       name,
       desc,
       count,
-      prio
+      prio,
+      isCompleted: false 
     }
     addTask(newTask);
     navigate("/");
   }
-
-
- /* const taskNumber = () => {
-    const newCount = parseInt(count) + 1
-    setCount(newCount)
-    console.log(newCount);
-  }*/
 
   const onChangeName = (e) => {
     setName(e.target.value);
@@ -55,7 +49,6 @@ export const AddTask = () => {
   return (
     <Form onSubmit={onSubmit}>
       <FormGroup>
-      <h1>Adicionar nova tarefa</h1>
         <Label>Tarefa</Label>
         <Input type="text" value={name} onChange={onChangeName} placeholder="Coloca aqui o nome da tarefa!" required></Input>
       </FormGroup>
@@ -75,8 +68,6 @@ export const AddTask = () => {
         <textarea type="text" value={desc} onChange={onChangeDesc} className='form-control' placeholder="Descreve a tarefa" required></textarea>
       </FormGroup>
       <button onClick={() => {incrementCount()}} className='btn btn-sm btn-outline-primary me-2'><i class="fa-solid fa-circle-plus"></i> Criar</button>
-
-      <Link to="/" className="btn btn-sm btn-outline-danger me-2"><i class="fa-solid fa-rotate-left"></i> Cancelar</Link>
     </Form>
     
   )
