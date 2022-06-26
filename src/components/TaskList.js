@@ -6,20 +6,28 @@ import { Task } from "./Task";
 export const TaskList = () => {
   const { tasks, editTask, removeTask } = useGlobalContext();
 
-  const [hideCompleted, setHideCompleted] = useState(false);
+  const [hideCompleted, setHideCompleted] = useState(true);
 
 
   return (
     <div className='mt-3'>
       {tasks.length > 0 ? (
       <>
-      <button onClick={() => setHideCompleted(!hideCompleted)}>
+      <button onClick={() =>{ 
+        console.log(hideCompleted)
+        setHideCompleted(!hideCompleted)}}>
          {hideCompleted ? 'Mostrar todas as tarefas' : 'Esconder tarefas terminadas'}
        </button>
         {tasks.map(task => {
           // (hideCompleted && task.isCompleted) ? console.log("batata") : null
            return (
-           <Task task={task} editTask={editTask} removeTask={removeTask}/>
+            <>
+           { !hideCompleted || (hideCompleted && !task.isCompleted)
+            ? <Task task={task} editTask={editTask} removeTask={removeTask}/> 
+            : <></>
+            }
+           
+            </>
            )       
         })}
       </>

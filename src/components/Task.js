@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
+
 
 
 export const Task = (props) => {
 
     const { task, editTask, removeTask } = props
+    //const [isCompleted, setCompleted, ] = useState();
+    
     console.log(task)
 
     function prioridadeLabel(aux){
@@ -33,9 +36,11 @@ export const Task = (props) => {
         }
       }
       
-      const onChangeCompleted = (e) => {
-          e.preventDefault();
-          editTask(task);
+      const onChangeCompleted = () => {
+        const newTask = {... task};
+        newTask.isCompleted = !task.isCompleted;
+        editTask(newTask);
+        console.log(newTask);
         }
       
   return (
@@ -50,7 +55,7 @@ export const Task = (props) => {
             </div>
                 <p className='card-text'>{task.desc}</p>
                 <div class="form-check d-flex justify-content-end m-2">
-                  <input class="form-check-input" value={task.isCompleted} onChange={onChangeCompleted} type="checkbox"/>&nbsp;
+                  <input class="form-check-input" checked={task.isCompleted} onChange={onChangeCompleted} type="checkbox"/>&nbsp;
                   <label class="form-check-label">Terminada</label>
                 </div>
                 <div className='d-flex justify-content-end pt-2 m-0 border-top'>

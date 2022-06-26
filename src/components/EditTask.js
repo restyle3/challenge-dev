@@ -28,7 +28,6 @@ export const EditTask = () => {
   useEffect(() => {
     
     const taskId = currentTaskId;
-    console.log(id)
     const selectedTask = tasks.find(task => task.id === taskId)
     setSelectedTask(selectedTask)
     
