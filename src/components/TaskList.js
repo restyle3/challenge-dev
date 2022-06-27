@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useGlobalContext } from "../context/GlobalState";
-import { Link } from "react-router-dom";
 import { Task } from "./Task";
+
 
 export const TaskList = () => {
   const { tasks, editTask, removeTask } = useGlobalContext();
@@ -13,7 +13,7 @@ export const TaskList = () => {
     <div className='mt-3'>
       {tasks.length > 0 ? (
       <>
-      <button onClick={() =>{ 
+      <button className="btn btn-outline-secondary" onClick={() =>{ 
         console.log(hideCompleted)
         setHideCompleted(!hideCompleted)}}>
          {hideCompleted ? 'Mostrar todas as tarefas' : 'Esconder tarefas terminadas'}

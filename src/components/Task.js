@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link } from "react-router-dom";
 
 
@@ -37,7 +37,7 @@ export const Task = (props) => {
       }
       
       const onChangeCompleted = () => {
-        const newTask = {... task};
+        const newTask = {...task};
         newTask.isCompleted = !task.isCompleted;
         editTask(newTask);
         console.log(newTask);

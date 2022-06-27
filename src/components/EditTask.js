@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useGlobalContext } from "../context/GlobalState";
-import { createBrowserHistory } from 'history'; 
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { TaskList } from "./TaskList";
 import {
   Form,
   FormGroup,
@@ -83,7 +81,7 @@ export const EditTask = () => {
     <button className='btn btn-sm btn-outline-primary me-2'><i class="fa-solid fa-check"></i> Alterar</button>
 
     <Link to="/" className="btn btn-sm btn-outline-danger me-2"><i class="fa-solid fa-rotate-left"></i> Cancelar</Link>
-    <TaskList />
+
   </Form>
   )
 }

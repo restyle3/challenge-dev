@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useState, useContext } from 'react';
+import React, { createContext, useReducer, useState, useContext, useEffect } from 'react';
 import AppReducer from './AppReducer';
 
 // Initial State
@@ -6,16 +6,21 @@ const initialState = {
   tasks: []
 }
 
+const localState = JSON.parse(localStorage.getItem("info"));
+
+
 // Create Context
  const GlobalContext = createContext(initialState);
 
-
-
 // Provider Component
- const GlobalProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(AppReducer, initialState);
-
-  const [count, setCount] = useState(0);
+  const GlobalProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(AppReducer, localState || initialState);
+  
+  useEffect(() => {
+    localStorage.setItem("info", JSON.stringify(state));
+    }, [state]);
+  
+  const [count, setCount] = useState  (0);
 
   // Actions
   const removeTask = (id) => {
