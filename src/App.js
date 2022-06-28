@@ -1,31 +1,25 @@
-import React from "react";
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import { Home } from './components/Home';
-import { AddTask } from './components/AddTask';
-import { EditTask } from './components/EditTask';
 import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { GlobalProvider } from "./context/GlobalState";
+import { GlobalProvider } from './context/GlobalState';
 
-
-
-const App = () => {
+function App() {
   return (
-    <div style={{ maxWidth: "30rem", margin: "4rem auto" }}>
+    <div style={{ maxWidth: '30rem', margin: '4rem auto' }}>
       <GlobalProvider>
-      <Router>
-        
-        <Routes>
-          <Route exact path="/" element={<Home/>}/>
-          <Route path="/add" element={<AddTask/>}/>
-          <Route path="/edit/:id" element={<EditTask/>}/>
-        </Routes>
-      </Router>
-      </GlobalProvider>        
+        <Router>
+
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+          </Routes>
+        </Router>
+      </GlobalProvider>
     </div>
-  )
+  );
 }
 
 export default App;

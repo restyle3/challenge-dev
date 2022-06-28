@@ -3,3 +3,17 @@
 #adjust-btns{
     float:right;
 }
+
+.adjust-input{
+    width: 8em;
+    height: 1.3em;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+.adjust-input-textarea{
+    width: 20em;
+    height: 2.3em;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
