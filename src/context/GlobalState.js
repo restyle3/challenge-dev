@@ -1,53 +1,54 @@
-import React, { createContext, useReducer, useState, useContext, useEffect } from 'react';
+import React, {
+  createContext, useReducer, useState, useContext, useEffect,
+} from 'react';
 import AppReducer from './AppReducer';
 
 // Initial State
 const initialState = {
-  tasks: []
-}
+  tasks: [],
+};
 
-const localState = JSON.parse(localStorage.getItem("info"));
-
+const localState = JSON.parse(localStorage.getItem('info'));
 
 // Create Context
- const GlobalContext = createContext(initialState);
+const GlobalContext = createContext(initialState);
 
 // Provider Component
-  const GlobalProvider = ({ children }) => {
+function GlobalProvider({ children }) {
   const [state, dispatch] = useReducer(AppReducer, localState || initialState);
-  
+
   useEffect(() => {
-    localStorage.setItem("info", JSON.stringify(state));
-    }, [state]);
-  
-  const [count, setCount] = useState  (0);
+    localStorage.setItem('info', JSON.stringify(state));
+  }, [state]);
+
+  const [count, setCount] = useState(0);
 
   // Actions
   const removeTask = (id) => {
     dispatch({
       type: 'REMOVE_TASK',
-      payload: id
-    })
-  }
+      payload: id,
+    });
+  };
 
   const addTask = (task) => {
     dispatch({
       type: 'ADD_TASK',
-      payload: task
-    })
-  }
+      payload: task,
+    });
+  };
 
   const editTask = (task) => {
     dispatch({
       type: 'EDIT_TASK',
-      payload: task
-    })
-  }
+      payload: task,
+    });
+  };
 
-  const incrementCount = () =>{
-    const newCount = parseInt(count) + 1
-    setCount(newCount)
-  }
+  const incrementCount = () => {
+    const newCount = parseInt(count) + 1;
+    setCount(newCount);
+  };
 
   return (
     <GlobalContext.Provider value={{
@@ -56,12 +57,13 @@ const localState = JSON.parse(localStorage.getItem("info"));
       addTask,
       editTask,
       count,
-      incrementCount
-    
-    }}>
+      incrementCount,
+
+    }}
+    >
       {children}
     </GlobalContext.Provider>
-  )
+  );
 }
 const useGlobalContext = () => useContext(GlobalContext);
 export { GlobalProvider, useGlobalContext };
